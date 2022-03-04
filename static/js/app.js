@@ -24,3 +24,22 @@ data.foreach((dataRow) => {
     );
  });
 } 
+
+function handleClick(){
+    // grab the datetime value from the filter
+    let date = d3.select("#datetime").property("value");
+    let filteredData = tableData;
+
+    // check to see if a date was entered and filter the 
+    // data using that date
+    if (date) {
+        // apply 'filter' to the table data to only keep the
+        // rows where the 'datetime' value matches the filter value
+        filteredData = filteredData.filter(row => row.datetime === date);
+    };
+
+    // rebuild the table using the filtered data
+    //@note: if o date was entered, then filteredData will
+    // just be the original tableData.
+    buildTable(filteredData);
+};
